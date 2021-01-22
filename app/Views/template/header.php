@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MDARC - Admin</title>
+    <title>SuppSys v2</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -24,7 +24,7 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="/css/custom.css">
     <!-- Favicon and apple touch icons-->
-    <link rel="shortcut icon" href="/img/mdarc-icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/warehouse.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png">
@@ -42,8 +42,8 @@
       <!-- Navbar Start-->
       <header class="nav-holder make-sticky">
         <div id="navbar" role="navigation" class="navbar navbar-expand-lg">
-          <div class="container"><a href="http://www.mdarc.org/" target="_blank" class="navbar-brand home"><img src="/img/mdarc-logo.png" alt="MDARC logo" class="d-none d-md-inline-block">
-            <img src="/img/mdarc-logo-small.png" alt="MDARC logo" class="d-inline-block d-md-none"><span class="sr-only">Universal - go to homepage</span></a>
+          <div class="container"><a href="http://www.mdarc.org/" target="_blank" class="navbar-brand home"><img src="/img/supp-logo.png" alt="MDARC logo" class="d-none d-md-inline-block">
+            <img src="/img/supp-logo.png" alt="SuppSys logo" class="d-inline-block d-md-none"><span class="sr-only">Universal - go to homepage</span></a>
             <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined">
               <span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
             <div id="navigation" class="navbar-collapse collapse">

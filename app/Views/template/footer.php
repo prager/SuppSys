@@ -5,13 +5,13 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4 text-center-md">
-            <p class="pull-left">&copy; 1947 - <script type="text/javascript">
+            <p class="pull-left">&copy; 2003 - <script type="text/javascript">
         var today = new Date();
         document.write(today.getFullYear() );
-     </script> MDARC</p>
+     </script> JLK Consulting</p>
           </div>
           <div class="col-lg-4 text-right text-center-md">
-            <p class="pull-left">Site hosted my <a href="https://jlkconsulting.info" target="_blank">https://jlkconsulting.info</a></p>
+            <p class="pull-left">Site hosted by <a href="https://jlkconsulting.info" target="_blank">https://jlkconsulting.info</a></p>
           </div>
           <div class="col-lg-4 text-right text-center-md">
             <p class="pull-right">Front end design inspired by <a href="https://bootstrapious.com" target="_blank">Bootstrapious</a> & <a href="https://fity.cz" target="_blank">Fity.cz</a>
