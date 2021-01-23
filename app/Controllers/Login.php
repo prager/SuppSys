@@ -10,19 +10,15 @@ class Login extends BaseController {
 		//$user = $this->request->getPost('user');
 		//$pass = $this->request->getPost('pass');
 		if($this->validate_credentials()) {
-	        echo view('template/header');
-					$login_mod = new \App\Models\Login_model();
-					$data['user'] = $this->username;
-					echo view('admin/admin_view', $data);
-			    echo view('template/footer');
+				header("Location: ". base_url() . "/index.php/manager");
 	    }
 	    else {
-	        echo view('template/header');
-	        $data['title'] = 'Login Error';
-	        $data['msg'] = 'There was an error while checking your credentials. Click ' . anchor('Main_con/reset_password', 'here') .
-	        ' to reset your password or go to home page ' . anchor('Main_con', 'here'). '<br><br>';
-	        echo view('status/status_view', $data);
-	        echo view('template/footer');
+        echo view('template/header');
+        $data['title'] = 'Login Error';
+        $data['msg'] = 'There was an error while checking your credentials. Click ' . anchor('Home/reset_password', 'here') .
+        ' to reset your password or go to home page ' . anchor(base_url(), 'here'). '<br><br>';
+        echo view('status/status_view', $data);
+        echo view('template/footer');
 	    }
 	}
 

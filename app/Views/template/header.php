@@ -42,21 +42,21 @@
       <!-- Navbar Start-->
       <header class="nav-holder make-sticky">
         <div id="navbar" role="navigation" class="navbar navbar-expand-lg">
-          <div class="container"><a href="http://www.mdarc.org/" target="_blank" class="navbar-brand home"><img src="/img/supp-logo.png" alt="MDARC logo" class="d-none d-md-inline-block">
-            <img src="/img/supp-logo.png" alt="SuppSys logo" class="d-inline-block d-md-none"><span class="sr-only">Universal - go to homepage</span></a>
+          <div class="container"><a href="<?php echo base_url(); ?>" class="navbar-brand home"><img src="/img/supp-logo.png" alt="SuppSys logo" class="d-none d-md-inline-block">
+            <img src="/img/supp-logo.png" alt="SuppSys logo" class="d-inline-block d-md-none"><span class="sr-only">SuppSys - go to homepage</span></a>
             <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined">
               <span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
             <div id="navigation" class="navbar-collapse collapse">
               <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">Home <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a href="http://mdarc.org" target="_blank" class="nav-link">MDARC Home Page</a></li>
+                    <li class="dropdown-item"><a href="https://supp-v2.jlkconsulting.info/" target="_blank" class="nav-link">Home Page</a></li>
                   </ul>
                 </li>
                 <!-- ========== Contact dropdown ==================-->
                 <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">Contact <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a href="http://www.mdarc.org/about-us/contact-us" target="_blank" class="nav-link">Contact MDARC</a></li>
+                    <li class="dropdown-item"><?php echo anchor('Home/contact', 'Contact', 'class="nav-link"'); ?></li>
                   </ul>
                 </li>
                 <!-- ========== Contact dropdown end ==================-->

@@ -16,11 +16,25 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Main_con');
+$routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
+
+$routes->add('manager/(:any)', 'Mngr::index');
+$routes->add('manager', 'Mngr::index');
+$routes->add('Mngr', 'Mngr::index');
+$routes->add('get-gear', 'Mngr::get_gear');
+$routes->add('get-gear/(:num)', 'Mngr::get_gear');
+$routes->add('get-boat-gear', 'Mngr::get_boat_gear');
+$routes->add('get-boat-gear/(:num)', 'Mngr::get_boat_gear');
+$routes->add('get-other-gear', 'Mngr::get_other_gear');
+$routes->add('get-other-gear/(:num)', 'Mngr::get_other_gear');
+$routes->add('logout', 'Home::logout');
+$routes->add('Home/logout', 'Home::logout');
+$routes->add('home', 'Home::index');
+$routes->add('Home', 'Home::index');
 
 /**
  * --------------------------------------------------------------------
@@ -30,7 +44,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Main_con::index');
+$routes->get('/', 'Home::index');
 
 /**
  * --------------------------------------------------------------------

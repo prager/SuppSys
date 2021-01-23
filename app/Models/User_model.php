@@ -47,5 +47,18 @@ class User_model extends Model {
     }
     return $retval;
   }
-
+  public function get_user_arr($user) {
+    $retarr = array();
+    $retarr['id_user'] = $user->id_user;
+    $retarr['fname'] = $user->fname;
+    $retarr['lname'] = $user->lname;
+    $retarr['email'] = $user->email;
+    $retarr['phone'] = $user->phone;
+    $retarr['street'] = $user->street;
+    $retarr['city'] = $user->city;
+    $retarr['zip'] = $user->zip;
+    $retarr['role'] = $user->type_code;
+    $retarr['username'] = $user->username;
+    return $retarr;
+  }
 }

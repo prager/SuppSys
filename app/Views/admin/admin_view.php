@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row d-flex align-items-center flex-wrap">
       <div class="col-md-7">
-        <h1 class="h2">MDARC Admin Page</h1>
+        <h1 class="h2">SuppSys Admin Page</h1>
       </div>
       <div class="col-md-5">
         <ul class="breadcrumb d-flex justify-content-end">
@@ -27,7 +27,8 @@
     <div class="row">
       <div class="col-md-1">&nbsp;</div>
       <div class="col-md-10 text-center">
-        <p>Working on it. Come back later ... <?php echo anchor('Main_con', 'Go Home here'); ?> </p>
+        <p>Working on it. Come back later ... <?php echo anchor('Home', 'Go Home here') . ' or logout ' . anchor('logout', 'here'); ?> </p><br<br>
+        <p>Go to <?php echo anchor('manager', 'Manager'); ?> </p>
         <hr>
         <br><br><br><br><br>
       </div>
