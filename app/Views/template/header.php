@@ -33,6 +33,10 @@
     <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-touch-icon-120x120.png">
     <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon-152x152.png">
+
+    <!--for Bootstrapious tables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" crossorigin="anonymous">
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -48,17 +52,16 @@
               <span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
             <div id="navigation" class="navbar-collapse collapse">
               <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">Home <b class="caret"></b></a>
+                <li class="nav-item"><a href="<?php echo base_url(); ?>">Home</a>
+                <li class="nav-item"><a href="<?php echo base_url(); ?>/index.php/contact">Contact</a>
+                <?php if($logged) {?>
+                <li class="nav-item"><a href="<?php echo base_url(); ?>/index.php/logout">Logout</a>
+                <!--<li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">Home <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a href="https://supp-v2.jlkconsulting.info/" target="_blank" class="nav-link">Home Page</a></li>
+                    <li class="dropdown-item"><a href="https://supp-v2.jlkconsulting.info/" class="nav-link">Home Page</a></li>
                   </ul>
-                </li>
-                <!-- ========== Contact dropdown ==================-->
-                <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">Contact <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-item"><?php echo anchor('Home/contact', 'Contact', 'class="nav-link"'); ?></li>
-                  </ul>
-                </li>
+                </li>-->
+              <?php }?>
                 <!-- ========== Contact dropdown end ==================-->
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

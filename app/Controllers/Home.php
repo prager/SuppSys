@@ -2,23 +2,26 @@
 
 use CodeIgniter\Controller;
 
-class Home extends Controller {
+/*public function __construct()  {
+        parent::__construct();
+        helper(['form', 'url']);
+    }*/
+
+class Home extends BaseController {
+
 	public function index() {
-		$login_mod = new \App\Models\Login_model();
-		$login_mod = new \App\Models\Login_model();
-		if($login_mod->is_logged()) {
+		if($this->login_mod->is_logged()) {
 			header("Location: ". base_url() . "/index.php/manager");
 		}
 		else {
-			helper(['form', 'url']);
-			echo view('template/header');
+			echo view('template/header', array('logged' => FALSE));
 			echo view('public/main_view');
 			echo view('template/footer');
 		}
 	}
 
 	public function reset_password() {
-		echo view('template/header');
+		echo view('template/header', array('logged' => FALSE));
 		$data['title'] = 'Working';
 		$data['msg'] = 'Still working on this. Check again later. Go to home page ' . anchor('Main_con', 'here'). '<br><br>';
 		echo view('status/status_view', $data);
@@ -35,9 +38,7 @@ class Home extends Controller {
 
 	public function register() {
 		$data = array();
-		helper(['form', 'url']);
-		$data_mod = new \App\Models\Data_model();
-		echo view('template/header');
+		echo view('template/header', array('logged' => FALSE));
 		$data['fname'] = '';
 		$data['lname'] = '';
 		$data['email'] = '';
@@ -52,14 +53,12 @@ class Home extends Controller {
 		$data['facebook'] = '';
 		$data['linkedin'] = '';
 		$data['googleplus'] = '';
-		$data['states'] = $data_mod->get_states_array();
+		$data['states'] = $this->data_mod->get_states_array();
 		echo view('public/register_view', $data);
 		echo view('template/footer');
 	}
 
 	public function send_reg() {
-
-		helper(['form', 'url']);
 		$param = array();
     $param['fname'] = $this->request->getPost('fname');
     $param['lname'] = $this->request->getPost('lname');
@@ -91,7 +90,7 @@ class Home extends Controller {
 		//if we have 10 digits left, it's probably valid.
 		if (strlen($justNums) == 10) $isPhoneNum = TRUE;
 
-    echo view('template/header');
+    echo view('template/header', array('logged' => FALSE));
 		if($param['lname'] == '' || $param['fname'] == '' || $email_flag == FALSE || $param['street'] == '' || $param['city'] == '' || $param['zip_cd']
 				|| $isPhoneNum == FALSE) {
 
@@ -114,8 +113,7 @@ class Home extends Controller {
 
         }
         else {
-					$user_mod = new \App\Models\User_model();
-          if($user_mod->register($param)) {
+          if($this->user_mod->register($param)) {
               $data['title'] = 'Thank you!';
 
 							$msg_str = 'Your registration has been sent. You will get an email with further instructions within 72 hours.
@@ -144,7 +142,7 @@ class Home extends Controller {
 	    $this->load->view('template/footer_ver1');*/
 			$verifystr = uri_string();
 			echo 'string: ' . $verifystr;
-			echo view('template/header');
+			echo view('template/header', array('logged' => FALSE));
 			$data['title'] = 'Not Done - Conf Registrations';
 			$data['msg'] = 'Still working on this. Check again later. Go to home page ' . anchor('Main_con', 'here'). '<br><br>';
 			echo view('status/status_view', $data);
@@ -152,17 +150,15 @@ class Home extends Controller {
 	}
 
 	public function contact() {
-		helper(['form', 'url']);
-		echo view('template/header');
+		echo view('template/header', array('logged' => $this->login_mod->is_logged()));
 		echo view('public/contact_view');
 		echo view('template/footer');
 	}
 
 	public function logout() {
-		$login_mod = new \App\Models\Login_model();
-		$login_mod->logout();
-		helper(['form', 'url']);
-		echo view('template/header');
+		//$login_mod = new \App\Models\Login_model();
+		$this->login_mod->logout();
+		echo view('template/header', array('logged' => FALSE));
 		echo view('public/main_view');
 		echo view('template/footer');
 	}

@@ -6,14 +6,13 @@ class Login extends BaseController {
 	var $username;
 
 	public function index() {
-		helper(['form', 'url']);
 		//$user = $this->request->getPost('user');
 		//$pass = $this->request->getPost('pass');
 		if($this->validate_credentials()) {
 				header("Location: ". base_url() . "/index.php/manager");
 	    }
 	    else {
-        echo view('template/header');
+        echo view('template/header', array('logged' => FALSE));
         $data['title'] = 'Login Error';
         $data['msg'] = 'There was an error while checking your credentials. Click ' . anchor('Home/reset_password', 'here') .
         ' to reset your password or go to home page ' . anchor(base_url(), 'here'). '<br><br>';
@@ -23,7 +22,7 @@ class Login extends BaseController {
 	}
 
 	public function load_user() {
-	    echo view('template/header');
+	    echo view('template/header', array('logged' => TRUE));
 			$login_mod = new \App\Models\Login_model();
 	    $flag = $login_mod->check_table($login_mod->get_cur_user_id());
 
@@ -38,8 +37,8 @@ class Login extends BaseController {
 	    $password = $this->request->getPost('pass');
 	    $data['user'] = $this->username;
 	    $data['pass'] = $password;
-			$login_mod = new \App\Models\Login_model();
-			return $login_mod->check_credentials($data);
+			//$login_mod = new \App\Models\Login_model();
+			return $this->login_mod->check_credentials($data);
 	}
 
 }

@@ -35,6 +35,9 @@ $routes->add('logout', 'Home::logout');
 $routes->add('Home/logout', 'Home::logout');
 $routes->add('home', 'Home::index');
 $routes->add('Home', 'Home::index');
+$routes->add('contact', 'Home::contact');
+$routes->add('gear', 'Mngr::pers_gear');
+$routes->add('download-gear', 'Mngr::download_gear');
 
 /**
  * --------------------------------------------------------------------

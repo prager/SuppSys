@@ -7,15 +7,15 @@ class Mngr extends BaseController {
 
 	public function index() {
 		helper(['form', 'url']);
-		echo view('template/header');
 		if($this->check_mngr()) {
-			$mngr_mod = new \App\Models\Mngr_model();
-			$data =  $mngr_mod->get_gear(1, 5);
+			echo view('template/header', array('logged' => TRUE));
+			//$data =  $this->mngr_mod->get_gear(1, 5);
 			$data['gear_type'] = 'gear';
 			$data['pg'] = 1;
 			echo view('mngr/mngr_view', $data);
 		}
 		else {
+		echo view('template/header', array('logged' => FALSE));
 			$data['title'] = 'Error!';
 			$data['msg'] = 'You have to be logged in to perform this function! To continue: ' . anchor('Home', 'click here');
 			echo view('status/status_view', $data);
@@ -25,23 +25,29 @@ class Mngr extends BaseController {
 	}
 
 	public function get_gear() {
-		$uri = $this->request->uri;
-		helper(['form', 'url']);
-		echo view('template/header');
-		$uri->setSilent();
-		if ($uri->getSegment(2) != '')
-			echo 'uri segment: ' . $uri->getSegment(2);
+		echo view('template/header', array('logged' => TRUE));
+		$this->uri->setSilent();
+		if ($this->uri->getSegment(2) != '')
+			echo 'uri segment: ' . $this->uri->getSegment(2);
 		else {
 			echo 'nothing there';
 		}
 		echo view('template/footer');
 	}
 
-	public function get_boat_gear() {
+	public function pers_gear() {
+		echo view('template/header', array('logged' => TRUE));
+		$data['gear'] = $this->mngr_mod->get_gear(10, 1);
+		$data['page'] = 'Gear';
+		echo view('mngr/gear_view', $data);
+		echo view('template/footer');
+	}
+
+	public function boat_gear() {
 
 	}
 
-	public function get_other_gear() {
+	public function other_gear() {
 
 	}
 
@@ -58,8 +64,7 @@ class Mngr extends BaseController {
 	}
 
 	public function download_gear() {
-
-	return $this->response->download('files/gear/gear.csv', NULL);
+		return $this->response->download('files/gear/gear.csv', NULL);
 	}
 
 	public function get_gear_csv() {

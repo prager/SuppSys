@@ -26,7 +26,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = [];
+	public $helpers = ['form', 'url'];
 
 	/**
 	 * Constructor.
@@ -41,6 +41,12 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.:
 		// $this->session = \Config\Services::session();
+
+		$this->login_mod = new \App\Models\Login_model();
+		$this->data_mod = new \App\Models\Data_model();
+		$this->user_mod = new \App\Models\User_model();
+		$this->mngr_mod = new \App\Models\Mngr_model();
+		$this->uri = $this->request->uri;
 	}
 
 }
