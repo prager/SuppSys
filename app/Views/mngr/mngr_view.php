@@ -7,8 +7,8 @@
         <hr>
         <div class="heading"><h4>Manager</h4></div>
         <p>Test: <?php echo anchor('get-gear/10', 'Test get gear'); ?></p>
-        <p><?php echo anchor('gear', 'Gear') . ' | ' . anchor('download-gear', 'Download Gear') . ' | ' . anchor('orders', 'Orders') . ' | ' .
-                      anchor('download-orders', 'Download Orders'); ?>
+        <p><?php echo anchor('gear', 'Gear') . ' | ' . anchor('orders', 'Orders') . ' | ' . anchor('pending-orders', 'Pending Orders') . ' | ' .
+                      anchor('delivered-orders', 'Delivered Orders') . ' | ' . anchor('cancelled-orders', 'Cancelled Orders'); ?>
         </p>
         <hr>
       </div>

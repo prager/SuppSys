@@ -43,6 +43,27 @@ class Mngr extends BaseController {
 		echo view('template/footer');
 	}
 
+	public function edit_gear() {
+		$flag = $this->check_mngr();
+		if($flag) {
+			$this->uri->setSilent();
+			$data['title'] = 'Edit Gear';
+			if ($this->uri->getSegment(3) != '')
+				$this->mngr_mod->delete_gear($this->uri->getSegment(2));
+			else {
+				$data['msg'] = 'In segment 2: ' . $this->uri->getSegment(2);
+			}
+			$this->gear();
+		}
+		else {
+		echo view('template/header', array('logged' => $flag));
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('status/status_view', $data);
+			echo view('template/footer');
+		}
+	}
+
 	public function boat_gear() {
 
 	}
@@ -52,9 +73,9 @@ class Mngr extends BaseController {
 	}
 
 	private function check_mngr() {
-		$login_mod = new \App\Models\Login_model();
+		//$login_mod = new \App\Models\Login_model();
 		$retval = FALSE;
-		$user = $login_mod->get_cur_user();
+		$user = $this->login_mod->get_cur_user();
     if($user != NULL) {
 			if($user['role'] == 99) {
 				$retval = TRUE;
@@ -64,10 +85,102 @@ class Mngr extends BaseController {
 	}
 
 	public function download_gear() {
-		return $this->response->download('files/gear/gear.csv', NULL);
+		if($this->check_mngr()) {
+			return $this->response->download('files/gear/gear.csv', NULL);
+		}
+		else {
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('template/header', array('logged' => FALSE));
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('status/status_view', $data);
+			echo view('template/footer');
+		}
 	}
 
-	public function get_gear_csv() {
-		return $this->response->download('files/gear/gear.csv', NULL);
+	public function download_gear_item() {
+		if($this->check_mngr()) {
+			$this->uri->setSilent();
+			return $this->response->download('files/gear/item-'. $this->uri->getSegment(2) . '.csv', NULL);
+		}
+		else {
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('template/header', array('logged' => FALSE));
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('status/status_view', $data);
+			echo view('template/footer');
+		}
+	}
+
+	public function gear() {
+		$flag = $this->check_mngr();
+		echo view('template/header', array('logged' => $flag));
+		$data = $this->mngr_mod->get_gear(500, 1);
+		echo view('mngr/show_view', $data);
+		echo view('template/footer');
+
+	}
+
+	public function orders() {
+		$flag = $this->check_mngr();
+		echo view('template/header', array('logged' => $flag));
+		if($flag) {
+			$data['title'] = 'Orders';
+			$data['msg'] = 'Not done yet. To continue: ' . anchor('Home', 'click here');
+		}
+		else {
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+		}
+		echo view('status/status_view', $data);
+		echo view('template/footer');
+	}
+
+	public function pending_orders() {
+		$flag = $this->check_mngr();
+		echo view('template/header', array('logged' => $flag));
+		if($flag) {
+			$data['title'] = 'Pending Orders';
+			$data['msg'] = 'Not done yet. To continue: ' . anchor('Home', 'click here');
+		}
+		else {
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+		}
+		echo view('status/status_view', $data);
+		echo view('template/footer');
+	}
+
+	public function delivered_orders() {
+		$flag = $this->check_mngr();
+		echo view('template/header', array('logged' => $flag));
+		if($flag) {
+			$data['title'] = 'Delivered Orders';
+			$data['msg'] = 'Not done yet. To continue: ' . anchor('Home', 'click here');
+		}
+		else {
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+		}
+		echo view('status/status_view', $data);
+		echo view('template/footer');
+	}
+
+	public function cancelled_orders() {
+		$flag = $this->check_mngr();
+		echo view('template/header', array('logged' => $flag));
+		if($flag) {
+			$data['title'] = 'Cancelled Orders';
+			$data['msg'] = 'Not done yet. To continue: ' . anchor('Home', 'click here');
+		}
+		else {
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+		}
+		echo view('status/status_view', $data);
+		echo view('template/footer');
 	}
 }

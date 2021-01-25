@@ -24,8 +24,22 @@ class Mngr_model extends Model {
             'qty' => $item->qty,
             'location' => $item->location,
             'issued' => $this->get_item_cnt($item->id_gear),
-            'assg' => $this->get_assigned_to($item->id_gear)
+            'assg' => $this->get_assigned_to($item->id_gear),
+            'selected' => ($item->type - 1),
+            'types' => $this->get_gear_types(),
+            'sn' => $item->sn,
+            'size' => $item->size
         );
+        if($item_arr['issued'] > 0) {
+          $fstr = $item_arr['desc'] . "\n\n";
+          $fstr .= "Location,Qty O/H,Qty Issued\n";
+          $fstr .= $item_arr['location'] ."," . $item_arr['qty'] . "," . $item_arr['issued'] . "\n\n";
+          $fstr .= "Issued To:\n";
+          foreach($item_arr['assg'] as $mem) {
+            $fstr .= $mem . "\n";
+          }
+          file_put_contents('files/gear/item-'. $item_arr['id_gear'] . '.csv', $fstr);
+        }
 //count the number of items in all gearsets
         $builder->resetQuery();
         $builder = $db->table('members');
@@ -76,6 +90,17 @@ class Mngr_model extends Model {
       $retarr['gear'] = $gear;
       return $retarr;
   }
+    public function get_gear_types() {
+      $db      = \Config\Database::connect();
+      $builder = $db->table('gear_types');
+      $res = $builder->get()->getResult();
+      $db->close();
+      $types = array();
+      foreach($res as $type) {
+        array_push($types, $type->description);
+      }
+      return $types;
+    }
 
   public function get_boat_gear($pg_no, $num_rec) {
     $retarr = array();
@@ -154,4 +179,9 @@ class Mngr_model extends Model {
     }
     return $members;
   }
+
+  public function delete_gear($id) {
+
+  }
+
 }
