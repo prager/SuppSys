@@ -46,13 +46,15 @@ class Mngr extends BaseController {
 	public function edit_gear() {
 		$flag = $this->check_mngr();
 		if($flag) {
+			$param['description'] = $this->request->getPost('desc');
+			$param['type'] = (int)$this->request->getPost('type') + 1;
+			$param['location'] = $this->request->getPost('location');
+			$param['sn'] = $this->request->getPost('sn');
+			$param['size'] = $this->request->getPost('size');
+			$param['qty'] = $this->request->getPost('qty');
+			$param['id'] = $this->getSegment(3);
 			$this->uri->setSilent();
-			$data['title'] = 'Edit Gear';
-			if ($this->uri->getSegment(3) != '')
-				$this->mngr_mod->delete_gear($this->uri->getSegment(2));
-			else {
-				$data['msg'] = 'In segment 2: ' . $this->uri->getSegment(2);
-			}
+			$this->mngr_mod->edit_gear($param);
 			$this->gear();
 		}
 		else {
@@ -181,6 +183,45 @@ class Mngr extends BaseController {
 			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
 		}
 		echo view('status/status_view', $data);
+		echo view('template/footer');
+	}
+
+	public function add_gear() {
+		$flag = $this->check_mngr();
+		if($flag) {
+			echo view('template/header', array('logged' => TRUE));
+			$data['types'] = $this->mngr_mod->get_gear_types();
+			echo view('mngr/add_gear_view', $data);
+		}
+		else {
+			echo view('template/header', array('logged' => FALSE));
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('status/status_view', $data);
+		}
+		echo view('template/footer');
+	}
+
+	public function load_gear() {
+		$flag = $this->check_mngr();
+		if($flag) {
+			$param['description'] = $this->request->getPost('desc');
+			$param['type'] = (int)$this->request->getPost('type') + 1;
+			$param['location'] = $this->request->getPost('location');
+			$param['sn'] = $this->request->getPost('sn');
+			$param['size'] = $this->request->getPost('size');
+			$param['qty'] = $this->request->getPost('qty');
+			$param['id'] = 0;
+			$this->mngr_mod->edit_gear($param);
+			echo view('template/header', array('logged' => TRUE));
+			echo view('mngr/add_gear_view');
+		}
+		else {
+			echo view('template/header', array('logged' => FALSE));
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('status/status_view', $data);
+		}
 		echo view('template/footer');
 	}
 }

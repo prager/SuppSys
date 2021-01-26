@@ -36,7 +36,7 @@ $routes->add('Home', 'Home::index');
 $routes->add('contact', 'Home::contact');
 $routes->add('get-gear/(:num)', 'Mngr::get_gear');
 $routes->add('gear', 'Mngr::gear');
-$routes->add('delete-gear/(:num)/(:num)', 'Mngr::edit_gear');
+$routes->add('delete-gear/(:num)/(:num)', 'Mngr::delete_gear');
 $routes->add('edit-gear/(:num)', 'Mngr::edit_gear');
 $routes->add('download-gear', 'Mngr::download_gear');
 $routes->add('orders', 'Mngr::orders');
@@ -48,6 +48,8 @@ $routes->add('cancelled-orders/', 'Mngr::cancelled_orders');
 $routes->add('pending-orders/(:num)', 'Mngr::pending_orders');
 $routes->add('pending-orders/', 'Mngr::pending_orders');
 $routes->add('download-gear-item/(:num)', 'Mngr::download_gear_item');
+$routes->add('load-gear', 'Mngr::load_gear');
+$routes->add('add-gear', 'Mngr::add_gear');
 
 /**
  * --------------------------------------------------------------------

@@ -13,7 +13,7 @@
               <input class="form-control" id="firstname" type="text" placeholder="Description" value="<?php echo $item['desc']; ?>">
             </div>
             <div class="form-group col-lg-3">
-              <label class="font-weight-bold text-small" for="type">Gear Type></label>
+              <label class="font-weight-bold text-small" for="type">Gear Type</label>
               <!--<input class="form-control" id="type" type="text" placeholder="Enter your last name">-->
               <?php echo form_dropdown('type', $item['types'], $item['selected'], 'class="form-control"'); ?>
             </div>
