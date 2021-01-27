@@ -50,6 +50,7 @@ $routes->add('pending-orders/', 'Mngr::pending_orders');
 $routes->add('download-gear-item/(:num)', 'Mngr::download_gear_item');
 $routes->add('load-gear', 'Mngr::load_gear');
 $routes->add('add-gear', 'Mngr::add_gear');
+$routes->add('test', 'Mngr::test');
 
 /**
  * --------------------------------------------------------------------

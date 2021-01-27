@@ -191,6 +191,7 @@ class Mngr extends BaseController {
 		if($flag) {
 			echo view('template/header', array('logged' => TRUE));
 			$data['types'] = $this->mngr_mod->get_gear_types();
+			$data['type'] = 'Gear';
 			echo view('mngr/add_gear_view', $data);
 		}
 		else {
@@ -243,5 +244,9 @@ class Mngr extends BaseController {
 		}
 		echo view('template/footer');
 	}
-
+	public function test() {
+		echo view('template/header', array('logged' => TRUE));
+		echo view('public/test_view');
+		echo view('template/footer');
+	}
 }
