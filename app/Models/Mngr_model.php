@@ -177,11 +177,40 @@ class Mngr_model extends Model {
         }
       }
     }
+    $db->close();
     return $members;
   }
 
-  public function delete_gear($id) {
+  public function edit_gear($param) {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('gear');
+    $id = $param['id_gear'];
+    unset($param['id_gear']);
+    if($id > 0) {
+      $param['description'] = $this->encr_decr($param['description'], TRUE, FALSE);
+      /*$builder->set('description', $param['description']);
+      $builder->set('type', $param['location']);
+      $builder->set('sn', $param['sn']);
+      $builder->set('size', $param['size']);
+      $builder->set('qty', $param['qty']);
+      $builder->where('id_gear', $id);
+      $builder->update();*/
+      $builder->resetQuery();
+      $builder->update($param, ['id_gear' => $id]);
+    }
+    else {
+      $param['description'] = $this->encr_decr($param['description'], TRUE, FALSE);
+      $builder->insert($param);
+    }
+    $db->close();
+  }
 
+  public function delete_gear($id) {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('gear');
+    $builder->resetQuery();
+    $builder->delete(['id_gear' => $id]);
+    $db->close;
   }
 
 }

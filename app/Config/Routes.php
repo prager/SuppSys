@@ -36,7 +36,7 @@ $routes->add('Home', 'Home::index');
 $routes->add('contact', 'Home::contact');
 $routes->add('get-gear/(:num)', 'Mngr::get_gear');
 $routes->add('gear', 'Mngr::gear');
-$routes->add('delete-gear/(:num)/(:num)', 'Mngr::delete_gear');
+$routes->add('delete-gear/(:num)', 'Mngr::delete_gear');
 $routes->add('edit-gear/(:num)', 'Mngr::edit_gear');
 $routes->add('download-gear', 'Mngr::download_gear');
 $routes->add('orders', 'Mngr::orders');

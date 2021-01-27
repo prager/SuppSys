@@ -18,11 +18,20 @@
 <div id="content">
   <div class="container">
     <div class="box">
-<?php echo form_open('add-gear'); ?>
+<?php echo form_open('load-gear'); ?>
       <div class="row">
         <div class="form-group col-lg-6">
           <label class="font-weight-bold text-small" for="firstname">Descripton<!--<span class="text-primary ml-1">&#42;</span>--></label>
-          <input class="form-control" id="firstname" type="text" placeholder="Description">
+          <!--<input class="form-control" id="desc" type="text" placeholder="Description">-->
+          <?php
+        			 $data = array(
+        			     'name' => 'desc',
+        			     'placeholder' => 'Enter Description',
+        			     'title' => 'Enter Description',
+                   'class' => 'form-control'
+        			 );
+        			 echo form_input($data);
+        			?>
         </div>
         <div class="form-group col-lg-3">
           <label class="font-weight-bold text-small" for="type">Gear Type</label>
@@ -31,19 +40,52 @@
         </div>
         <div class="form-group col-lg-3">
           <label class="font-weight-bold text-small" for="qty">Quantity</label>
-          <input class="form-control" id="qty" type="text">
-        </div>
-        <div class="form-group col-lg-12">
-          <label class="font-weight-bold text-small" for="email">Serial Number</label>
-          <input class="form-control" id="sn" type="text" placeholder="Serial Number">
+          <?php
+        			 $data = array(
+        			     'name' => 'qty',
+        			     'placeholder' => 'Quantity',
+        			     'title' => 'Quantity',
+                   'class' => 'form-control'
+        			 );
+        			 echo form_input($data);
+        			?>
         </div>
         <div class="form-group col-lg-6">
+          <label class="font-weight-bold text-small" for="sn">Serial Number</label>
+          <?php
+        			 $data = array(
+        			     'name' => 'sn',
+        			     'placeholder' => 'Serial Number',
+        			     'title' => 'Enter SN',
+                   'class' => 'form-control'
+        			 );
+        			 echo form_input($data);
+        			?>
+        </div>
+        <div class="col-lg-6">&nbsp;</div>
+        <div class="form-group col-lg-6">
           <label class="font-weight-bold text-small" for="size">Size</label>
-          <input class="form-control" id="size" type="text" placeholder="Size">
+          <?php
+        			 $data = array(
+        			     'name' => 'size',
+        			     'placeholder' => 'Size',
+        			     'title' => 'Enter Size',
+                   'class' => 'form-control'
+        			 );
+        			 echo form_input($data);
+        			?>
         </div>
         <div class="form-group col-lg-6">
           <label class="font-weight-bold text-small" for="location">Location</label>
-          <input class="form-control" id="location" type="text" placeholder="Location">
+          <?php
+        			 $data = array(
+        			     'name' => 'location',
+        			     'placeholder' => 'Location',
+        			     'title' => 'Enter Location',
+                   'class' => 'form-control'
+        			 );
+        			 echo form_input($data);
+        			?>
         </div>
         <div class="form-group col-lg-12">
           <button class="btn btn-primary" type="submit">Submit your request</button><br><br>

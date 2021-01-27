@@ -52,8 +52,8 @@ class Mngr extends BaseController {
 			$param['sn'] = $this->request->getPost('sn');
 			$param['size'] = $this->request->getPost('size');
 			$param['qty'] = $this->request->getPost('qty');
-			$param['id'] = $this->getSegment(3);
 			$this->uri->setSilent();
+			$param['id_gear'] = $this->uri->getSegment(2);
 			$this->mngr_mod->edit_gear($param);
 			$this->gear();
 		}
@@ -211,10 +211,11 @@ class Mngr extends BaseController {
 			$param['sn'] = $this->request->getPost('sn');
 			$param['size'] = $this->request->getPost('size');
 			$param['qty'] = $this->request->getPost('qty');
-			$param['id'] = 0;
+			$param['id_gear'] = 0;
 			$this->mngr_mod->edit_gear($param);
 			echo view('template/header', array('logged' => TRUE));
-			echo view('mngr/add_gear_view');
+			$data['types'] = $this->mngr_mod->get_gear_types();
+			echo view('mngr/add_gear_view', $data);
 		}
 		else {
 			echo view('template/header', array('logged' => FALSE));
@@ -224,4 +225,23 @@ class Mngr extends BaseController {
 		}
 		echo view('template/footer');
 	}
+
+	public function delete_gear() {
+		$flag = $this->check_mngr();
+		if($flag) {
+			$this->uri->setSilent();
+			$this->mngr_mod->delete_gear($this->uri->getSegment(2));
+			echo view('template/header', array('logged' => TRUE));
+			$data['title'] = 'Item Deleted';
+			$data['msg'] = 'Go back to the main page ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('status/status_view', $data);
+		}
+		else {
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('status/status_view', $data);
+		}
+		echo view('template/footer');
+	}
+
 }

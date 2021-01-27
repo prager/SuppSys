@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
               <p>Delete Item <strong><?php echo $item['desc']; ?>?</strong></p>
-              <a href="<?php echo base_url() . '/index.php/delete-gear/'. $item['id_gear'] . '/1'; ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete </a>
+              <a href="<?php echo base_url() . '/index.php/delete-gear/'. $item['id_gear']; ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete </a>
               <br>
             </div>
           </div>
