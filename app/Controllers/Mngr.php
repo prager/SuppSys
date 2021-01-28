@@ -58,7 +58,7 @@ class Mngr extends BaseController {
 			$this->gear();
 		}
 		else {
-		echo view('template/header', array('logged' => $flag));
+			echo view('template/header', array('logged' => $flag));
 			$data['title'] = 'Authorization Error';
 			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
 			echo view('status/status_view', $data);
@@ -246,7 +246,17 @@ class Mngr extends BaseController {
 	}
 	public function test() {
 		echo view('template/header', array('logged' => TRUE));
-		echo view('public/test_view');
+		echo view('public/test_view', array('types' => $this->mngr_mod->get_gear_types()));
+		echo view('template/footer');
+	}
+
+	public function load_test() {
+		echo view('template/header', array('logged' => TRUE));
+		$data['title'] = 'Load Test';
+		$data['msg'] = 'Go back to the main page ' . anchor(base_url(), 'here'). '<br>';
+		$data['msg'] .= 'fname: ' . $this->request->getPost('firstname') . '<br>';
+		$data['msg'] .= 'lname: ' . $this->request->getPost('lastname') . '<br>';
+		echo view('status/status_view', $data);
 		echo view('template/footer');
 	}
 }

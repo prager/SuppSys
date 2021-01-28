@@ -187,14 +187,7 @@ class Mngr_model extends Model {
     $id = $param['id_gear'];
     unset($param['id_gear']);
     if($id > 0) {
-      $param['description'] = $this->encr_decr($param['description'], TRUE, FALSE);
-      /*$builder->set('description', $param['description']);
-      $builder->set('type', $param['location']);
-      $builder->set('sn', $param['sn']);
-      $builder->set('size', $param['size']);
-      $builder->set('qty', $param['qty']);
-      $builder->where('id_gear', $id);
-      $builder->update();*/
+      $param['description'] = $this->encr_decr($param['description'], TRUE, FALSE);      
       $builder->resetQuery();
       $builder->update($param, ['id_gear' => $id]);
     }

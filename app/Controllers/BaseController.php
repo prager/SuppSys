@@ -46,6 +46,7 @@ class BaseController extends Controller
 		$this->data_mod = new \App\Models\Data_model();
 		$this->user_mod = new \App\Models\User_model();
 		$this->mngr_mod = new \App\Models\Mngr_model();
+		$this->orders_mod = new \App\Models\Orders_model();
 		$this->uri = $this->request->uri;
 	}
 
