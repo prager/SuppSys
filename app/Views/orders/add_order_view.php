@@ -8,7 +8,7 @@
       <div class="col-md-7">
         <ul class="breadcrumb d-flex justify-content-end">
           <li class="breadcrumb-item"><?php echo anchor(base_url(), 'Home'); ?></li>
-          <li class="breadcrumb-item"><?php echo anchor('gear', 'Gear'); ?></li>
+          <li class="breadcrumb-item"><?php echo anchor('orders', 'Orders'); ?></li>
           <li class="breadcrumb-item"><?php echo anchor('test', 'Test'); ?></li>
         </ul>
       </div>
@@ -36,7 +36,6 @@
                     </li>
                     <li class="nav-item"><?php echo anchor('orders', 'Orders', 'class="nav-link d-flex align-items-center justify-content-between"'); ?>
                       <ul class="nav nav-pills flex-column">
-                        <li class="nav-item"><?php echo anchor('add-order', 'Add Order', 'class="nav-link"'); ?></li>
                         <li class="nav-item"><?php echo anchor('download-orders', 'Download Orders', 'class="nav-link"'); ?></li>
                         <li class="nav-item"><?php echo anchor('pending-orders', 'Pending Orders', 'class="nav-link"'); ?></li>
                         <li class="nav-item"><?php echo anchor('delivered-orders', 'Delivered Orders', 'class="nav-link"'); ?></li>
@@ -57,17 +56,16 @@
       <div class="col-lg-8">
         <section class="bar">
           <div class="heading">
-            <h3>Add Gear</h3>
+            <h3>Add Order</h3>
           </div>
           <!--<form action="load-gear">-->
-          <?php echo form_open('load-gear'); ?>
+          <?php echo form_open('edit-order'); ?>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label class="font-weight-bold text-small" for="desc">Descripton</label>
                   <?php
                        $data = array(
-                           'value' => '',
                            'name' => 'desc',
                            'id' => 'desc',
                            'placeholder' => 'Enter Description',
@@ -80,8 +78,31 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="font-weight-bold text-small" for="type">Gear Type</label>
-                  <?php echo form_dropdown('type', $types, 0, 'class="form-control"'); ?>
+                  <label class="font-weight-bold text-small" for="supplier">Supplier</label>
+                  <?php
+                       $data = array(
+                           'name' => 'supplier',
+                           'id' => 'supplier',
+                           'placeholder' => 'Enter Supplier',
+                           'title' => 'Enter Supplier',
+                           'class' => 'form-control'
+                       );
+                       echo form_input($data);
+                      ?>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="font-weight-bold text-small" for="price">Price</label>
+                  <?php
+                       $data = array(
+                           'name' => 'price',
+                           'placeholder' => 'Price',
+                           'title' => 'Price',
+                           'class' => 'form-control'
+                       );
+                       echo form_input($data);
+                      ?>
                 </div>
               </div>
               <div class="col-md-6">
@@ -99,14 +120,30 @@
                       ?>
                 </div>
               </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label class="font-weight-bold text-small" for="part_no">Item No</label>
+                  <?php
+                			 $data = array(
+                			     'name' => 'part_no',
+                			     'placeholder' => 'Part No',
+                			     'title' => 'Part No',
+                           'class' => 'form-control'
+                			 );
+                			 echo form_input($data);
+                			?>
+                </div>
+              </div>
+              <div class="col-md-4">&nbsp;</div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="font-weight-bold text-small" for="sn">Serial Number</label>
+                  <label class="font-weight-bold text-small" for="order_date"> Order Date</label>
                   <?php
                        $data = array(
-                           'name' => 'sn',
-                           'placeholder' => 'Serial Number',
-                           'title' => 'Enter SN',
+                           'type' => 'date',
+                           'name' => 'order_date',
+                           'id' => 'order_date',
+                           'title' => 'Order Date',
                            'class' => 'form-control'
                        );
                        echo form_input($data);
@@ -115,12 +152,12 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="font-weight-bold text-small" for="size">Size</label>
+                  <label class="font-weight-bold text-small" for="date_received">Date Received</label>
                   <?php
                        $data = array(
-                           'name' => 'size',
-                           'placeholder' => 'Size',
-                           'title' => 'Enter Size',
+                           'type' => 'date',
+                           'name' => 'date_received',
+                           'title' => 'Date Received',
                            'class' => 'form-control'
                        );
                        echo form_input($data);
@@ -129,21 +166,50 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="font-weight-bold text-small" for="location">Location</label>
+                  <label class="font-weight-bold text-small" for="doc_no">Document Number</label>
                   <?php
                        $data = array(
-                           'name' => 'location',
-                           'placeholder' => 'Location',
-                           'title' => 'Enter Location',
+                           'name' => 'doc_no',
+                           'placeholder' => 'Document Number',
+                           'title' => 'Document Number',
                            'class' => 'form-control'
                        );
                        echo form_input($data);
                       ?>
                 </div>
               </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="font-weight-bold text-small" for="order_no">Order Number</label>
+                  <?php
+                			 $data = array(
+                			     'name' => 'order_no',
+                			     'placeholder' => 'Order No',
+                			     'title' => 'Order No',
+                           'class' => 'form-control'
+                			 );
+                			 echo form_input($data);
+                			?>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label class="font-weight-bold text-small" for="remarks">Remarks</label>
+                  <?php
+                			 $data = array(
+                			     'name' => 'remarks',
+                			     'placeholder' => 'Remarks',
+                			     'title' => 'Remarks',
+                           'class' => 'form-control'
+                			 );
+                			 echo form_input($data);
+                			?>
+                </div>
+              </div>
+              <div class="col-md-4">&nbsp;</div>
               </div>
               <div class="col-md-12 text-center"><br>
-                <button type="submit" class="btn btn-template-outlined"><i class="fa fa-upload"></i> Add Gear Item</button>
+                <button type="submit" class="btn btn-template-outlined"><i class="fa fa-upload"></i> Add Order Item</button>
               </div>
             </div>
           <?php echo form_close(); ?>

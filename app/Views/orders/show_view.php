@@ -19,8 +19,7 @@
 <div id="content">
   <div class="container py-7">
     <div class="row py-7">
-      <div class="col-lg-10 mx-auto">
-        <div class="card rounded shadow border-0">
+      <div class="col-lg-12 mx-auto">
           <div class="card-body p-7 bg-white rounded text-center">
             <small><?php echo 'Orders - Download: ' . anchor('download-orders', 'All Orders').' | '. anchor('download-pending', 'Pending').' | '.
                     anchor('download-cancelled', 'Cancelled').' | '.anchor('download-delivered', 'Delivered');?></small>
@@ -47,8 +46,8 @@
                     </td>
                     <td><?php echo $item['doc_no']; ?></td>
                     <td><?php echo $item['qty']; ?></td>
-                    <td><?php echo $item['order_date']; ?></td>
-                    <td><?php echo $item['date_received']; ?></td>
+                    <td><?php echo str_replace('-', '/', $item['order_date']); ?></td>
+                    <td><?php echo str_replace('-', '/', $item['date_received']); ?></td>
                     <td><?php echo $item['invoice_no']; ?></td>
                     <td><?php echo $item['remarks']; ?></td>
                     <td class="text-center">
@@ -61,7 +60,6 @@
               </table>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </div>

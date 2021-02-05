@@ -14,8 +14,7 @@
       </div>
     </div>
   </div>
-</div>
-<div id="content">
+</div><div id="content">
   <div id="contact" class="container">
     <div class="row">
       <div class="col-lg-4">
@@ -36,6 +35,7 @@
                     </li>
                     <li class="nav-item"><?php echo anchor('orders', 'Orders', 'class="nav-link d-flex align-items-center justify-content-between"'); ?>
                       <ul class="nav nav-pills flex-column">
+                        <li class="nav-item"><?php echo anchor('add-order', 'Add Order', 'class="nav-link"'); ?></li>
                         <li class="nav-item"><?php echo anchor('download-orders', 'Download Orders', 'class="nav-link"'); ?></li>
                         <li class="nav-item"><?php echo anchor('pending-orders', 'Pending Orders', 'class="nav-link"'); ?></li>
                         <li class="nav-item"><?php echo anchor('delivered-orders', 'Delivered Orders', 'class="nav-link"'); ?></li>
@@ -56,47 +56,90 @@
       <div class="col-lg-8">
         <section class="bar">
           <div class="heading">
-            <h3>SuppSys Supplies Management System</h3>
+            <h3>Add Gear</h3>
           </div>
-          <div class="row d-flex align-items-stretch same-height">
-            <div class="col-md-12">
-              <!--<div class="box-simple box-white same-height">-->
-                <br>
-                <h4>Purpose of SuppSys Supply System</h4>
-                <p>The purpose is to manage supplies of an organization with many different categories of supplies. </p>
-                <p>In addition, the system supports individual gear items assignment to individual members. It tracks not only gear items,
-                  but also it tracks these items to be assigned to individual members of the organization. </p>
-              <!--</div>-->
-            </div>
-            <!--<div class="col-md-4">
-              <div class="box-simple box-white same-height">
-                <br>
-                <h4>Gear</h4>
-                <p>Manage all available <?php echo anchor('gear', 'Gear'); ?> Items<br>
-                  Add <?php echo anchor('add-gear', 'Gear'); ?> Items<br>
-                Download all gear <?php echo anchor('download-gear', 'Items'); ?></p>
+          <!--<form action="load-gear">-->
+          <?php echo form_open('load-order'); ?>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="font-weight-bold text-small" for="desc">Descripton</label>
+                  <?php
+                       $data = array(
+                           'name' => 'desc',
+                           'id' => 'desc',
+                           'placeholder' => 'Enter Description',
+                           'title' => 'Enter Description',
+                           'class' => 'form-control'
+                       );
+                       echo form_input($data);
+                      ?>
+                </div>
+              </div>
+              <div class="col-md-6">&nbsp;</div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="font-weight-bold text-small" for="test">Test</label>
+                  <?php
+                       $data = array(
+                           'name' => 'test',
+                           'placeholder' => 'Test',
+                           'title' => 'Test',
+                           'class' => 'form-control'
+                       );
+                       echo form_input($data);
+                      ?>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="font-weight-bold text-small" for="test2">Test2</label>
+                  <?php
+                       $data = array(
+                           'name' => 'test2',
+                           'id' => 'test2',
+                           'placeholder' => 'Test 2',
+                           'title' => 'Test 2',
+                           'class' => 'form-control'
+                       );
+                       echo form_input($data);
+                      ?>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="font-weight-bold text-small" for="size">Size</label>
+                  <?php
+                       $data = array(
+                           'name' => 'size',
+                           'placeholder' => 'Size',
+                           'title' => 'Enter Size',
+                           'class' => 'form-control'
+                       );
+                       echo form_input($data);
+                      ?>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="font-weight-bold text-small" for="location">Location</label>
+                  <?php
+                       $data = array(
+                           'name' => 'location',
+                           'placeholder' => 'Location',
+                           'title' => 'Enter Location',
+                           'class' => 'form-control'
+                       );
+                       echo form_input($data);
+                      ?>
+                </div>
+              </div>
+              </div>
+              <div class="col-md-12 text-center"><br>
+                <button type="submit" class="btn btn-template-outlined"><i class="fa fa-upload"></i> Add Gear Item</button>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="box-simple box-white same-height">
-                <br>
-                <h4>Orders</h4>
-                <p>Manage <?php echo anchor('orders', 'Orders'); ?><br>
-                  Add an individual <?php echo anchor('add-order', 'Order'); ?><br>
-                  Download all <?php echo anchor('download-orders', 'Orders'); ?></p>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="box-simple box-white same-height">
-                <br>
-                <h4>Members and Gearsets</h4>
-                <p> Manage <?php echo anchor('Members', 'Members') . ' <br> Add a ' . anchor('add-member', 'Member'); ?> <br>
-                    Add a  <?php echo anchor('add-gearset', 'Gearset'); ?><br>
-                    Download all <?php echo anchor('download-members', 'Members'); ?>
-                </p>
-              </div>
-            </div>-->
-          </div>
+          <?php echo form_close(); ?>
         </section>
       </div>
 

@@ -6,7 +6,7 @@
         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body">
-        <?php echo form_open('edit-orders/' . $item['id_orders']); ?>
+        <?php echo form_open('edit-order/' . $item['id_orders']); ?>
           <div class="row">
             <div class="form-group col-lg-6">
               <label class="font-weight-bold text-small" for="desc"> Descripton<!--<span class="text-primary ml-1">&#42;</span>--></label>
@@ -73,8 +73,9 @@
               <label class="font-weight-bold text-small" for="order_date"> Order Date<!--<span class="text-primary ml-1">&#42;</span>--></label>
               <?php
                    $data = array(
+                       'type' => 'date',
                        'name' => 'order_date',
-                       'placeholder' => 'Order Date',
+                       'id' => 'order_date',
                        'title' => 'Order Date',
                        'class' => 'form-control'
                    );
@@ -85,8 +86,8 @@
               <label class="font-weight-bold text-small" for="date_received">Date Received</label>
               <?php
                    $data = array(
+                       'type' => 'date',
                        'name' => 'date_received',
-                       'placeholder' => 'Date Received',
                        'title' => 'Date Received',
                        'class' => 'form-control'
                    );

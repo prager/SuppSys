@@ -14,7 +14,7 @@ class Orders_model extends Model {
     $db      = \Config\Database::connect();
     $builder = $db->table('orders');
     $builder->orderBy('description', 'ASC');
-    $fstr = "Item #,Part #,Supp Part #,Desc,Vendor,Ord Date,Rec Date,Doc #,Order #,Qty,Price,Total,Remark,Type\n";
+    $fstr = "Item #,Part #,Desc,Vendor,Ord Date,Rec Date,Doc #,Order #,Qty,Price,Total,Remark,Type\n";
     $q = $builder->get()->getResult();
     $orders = array();
     $mngr_mod = new \App\Models\Mngr_model();
@@ -23,7 +23,7 @@ class Orders_model extends Model {
           $date_rec = '';
       }
       else {
-          $date_rec = date('m/d/Y', $item->date_received);
+          $date_rec = date('Y-m-d', $item->date_received);
       }
       $item_arr = array(
         'id_orders' => $item->id_orders,
@@ -31,7 +31,7 @@ class Orders_model extends Model {
         'supp_part_no' => $item->supp_part_no,
         'desc' => $mngr_mod->encr_decr($item->description, FALSE, TRUE),
         'supplier' => $mngr_mod->encr_decr($item->supplier, FALSE, TRUE),
-        'order_date' => date('m/d/Y', $item->order_date),
+        'order_date' => date('Y-m-d', $item->order_date),
         'date_received' => $date_rec,
         'doc_no' => $item->doc_no,
         'invoice_no' => $item->invoice_no,
@@ -42,7 +42,7 @@ class Orders_model extends Model {
 				'type' => $item->type
       );
       $item_arr['total'] = number_format(($item_arr['price'] * $item_arr['qty']), 2, '.', '');
-      $fstr .= $item_arr['id_orders'] . "," .  $item_arr['part_no'] . "," . $item_arr['supp_part_no'] . "," . $item_arr['desc'] .
+      $fstr .= $item_arr['id_orders'] . "," .  $item_arr['part_no'] . "," . $item_arr['desc'] .
 	        "," . $item_arr['supplier'] . "," . $item_arr['order_date'] ."," .  $item_arr['date_received'] .
 	        "," . $item_arr['doc_no'] ."," .  $item_arr['invoice_no'] ."," .  $item_arr['qty'] ."," .
 	        $item_arr['price'] ."," .  $item_arr['total'] ."," .  $item_arr['remarks'] ."," .  $item_arr['type'] . "\n";
@@ -59,18 +59,32 @@ class Orders_model extends Model {
     $db->close();
     return $retarr;
   }
-  public function edit_orders($param) {
+  public function edit_order($param) {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('orders');
     $chr = substr($param['price'], 0, 1);
     if (!(is_numeric($chr))) {
         $param['price'] = substr($param['price'], 1, (strlen($param['price']) - 1));
         $param['price'] = str_replace(',', '', $param['price']);
     }
-    $db      = \Config\Database::connect();
-    $builder = $db->table('orders');
     $id = $param['id_orders'];
     unset($param['id_orders']);
     $mngr_mod = new \App\Models\Mngr_model();
-
+    $builder->resetQuery();
+    if($id > 0) {
+      $builder->update($param, ['id_orders' => $id]);
+    }
+    else {
+      $builder->insert($param);
+    }
     $db->close();
+  }
+
+  public function delete_order($id) {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('orders');
+    $builder->resetQuery();
+    $builder->delete(['id_orders' => $id]);
+    $db->close;
   }
 }

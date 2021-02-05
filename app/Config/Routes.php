@@ -41,18 +41,25 @@ $routes->add('edit-gear/(:num)', 'Mngr::edit_gear');
 $routes->add('download-gear', 'Mngr::download_gear');
 $routes->add('orders', 'Orders::index');
 $routes->add('orders/(:num)', 'Orders::orders');
-$routes->add('edit-orders/(:num)', 'Orders::edit_orders');
+$routes->add('edit-order/(:num)', 'Orders::edit_orders');
+$routes->add('edit-order', 'Orders::edit_orders');
+$routes->add('delete-order/(:num)', 'Orders::delete_order');
 $routes->add('delivered-orders/(:num)', 'Orders::delivered_orders');
 $routes->add('delivered-orders/', 'Orders::delivered_orders');
 $routes->add('cancelled-orders/(:num)', 'Orders::cancelled_orders');
 $routes->add('cancelled-orders/', 'Orders::cancelled_orders');
 $routes->add('pending-orders/(:num)', 'Orders::pending_orders');
-$routes->add('pending-orders/', 'Orders::pending_orders');
+$routes->add('pending-orders', 'Orders::pending_orders');
+$routes->add('download-orders', 'Orders::download_orders');
+$routes->add('add-order', 'Orders::add_order');
 $routes->add('download-gear-item/(:num)', 'Mngr::download_gear_item');
 $routes->add('load-gear', 'Mngr::load_gear');
 $routes->add('add-gear', 'Mngr::add_gear');
+$routes->add('test-orders', 'Orders::test');
 $routes->add('test', 'Mngr::test');
 $routes->add('load-test', 'Mngr::load_test');
+$routes->add('test-post', 'Orders::test_post');
+$routes->add('load-order', 'Orders::load_order');
 
 /**
  * --------------------------------------------------------------------

@@ -35,6 +35,7 @@
                     </li>
                     <li class="nav-item"><?php echo anchor('orders', 'Orders', 'class="nav-link d-flex align-items-center justify-content-between"'); ?>
                       <ul class="nav nav-pills flex-column">
+                        <li class="nav-item"><?php echo anchor('add-order', 'Add Order', 'class="nav-link"'); ?></li>
                         <li class="nav-item"><?php echo anchor('download-orders', 'Download Orders', 'class="nav-link"'); ?></li>
                         <li class="nav-item"><?php echo anchor('pending-orders', 'Pending Orders', 'class="nav-link"'); ?></li>
                         <li class="nav-item"><?php echo anchor('delivered-orders', 'Delivered Orders', 'class="nav-link"'); ?></li>
