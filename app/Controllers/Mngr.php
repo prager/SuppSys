@@ -259,4 +259,19 @@ class Mngr extends BaseController {
 		echo view('status/status_view', $data);
 		echo view('template/footer');
 	}
+
+	public function show_gear_sets() {
+		echo view('template/header', array('logged' => TRUE));
+		//echo 'Gearsets! Go ' . anchor ('home', 'home');
+		if($this->check_mngr()) {
+			echo view('mngr/show_gearsets_view', $this->mngr_mod->get_gearsets());
+		}
+		else {
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('status/status_view', $data);
+		}
+		echo view('template/footer');
+	}
+
 }

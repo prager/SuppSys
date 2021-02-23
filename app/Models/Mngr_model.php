@@ -187,7 +187,7 @@ class Mngr_model extends Model {
     $id = $param['id_gear'];
     unset($param['id_gear']);
     if($id > 0) {
-      $param['description'] = $this->encr_decr($param['description'], TRUE, FALSE);      
+      $param['description'] = $this->encr_decr($param['description'], TRUE, FALSE);
       $builder->resetQuery();
       $builder->update($param, ['id_gear' => $id]);
     }
@@ -206,4 +206,32 @@ class Mngr_model extends Model {
     $db->close;
   }
 
+  public function get_gearsets() {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('gear_sets');
+    $gear_sets = $builder->get()->getResult();
+    $gearsets = array();
+    foreach($gear_sets as $set) {
+      $item = array();
+      $item['id'] = $set->id_gear_sets;
+      $item['parent'] = $set->id_parent;
+      $item['member'] = $set->id_member;
+      $item['desc'] = $this->encr_decr($set->description, FALSE, TRUE);
+      $item['date'] = date('m/d/Y', $set->date_issued);
+      $builder = $db->table('members');
+      $builder->where('gear', $item['id']);
+      if ($builder->countAllResults() == 0) {
+          $item['assigned'] = FALSE;
+      }
+      else {
+          $item['assigned'] = TRUE;
+      }
+      array_push($gearsets, $item);
+    }
+    $db->close();
+    //https://www.php.net/manual/en/function.array-multisort.php
+    array_multisort (array_column($gearsets, 'desc'), SORT_ASC, $gearsets);
+    $retarr['gearsets'] = $gearsets;
+    return $retarr;
+  }
 }

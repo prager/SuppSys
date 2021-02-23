@@ -43,7 +43,7 @@ class Login_model extends Model {
  * @param $data array with user ID and password
  */
 public function check_credentials($data) {
-  //echo '<br><br><br>' . password_hash($data['pass'], PASSWORD_BCRYPT, array('cost' => 12));
+  //echo '<br><br><br>' . password_hash($data['pass'], PASSWORD_BCRYPT, array('cost' => 12)) . '<br><br>';
   $retval = FALSE;
 
   if (session_status() !== PHP_SESSION_ACTIVE) {

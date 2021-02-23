@@ -60,6 +60,7 @@ $routes->add('test', 'Mngr::test');
 $routes->add('load-test', 'Mngr::load_test');
 $routes->add('test-post', 'Orders::test_post');
 $routes->add('load-order', 'Orders::load_order');
+$routes->add('gearsets', 'Mngr::show_gear_sets');
 
 /**
  * --------------------------------------------------------------------
