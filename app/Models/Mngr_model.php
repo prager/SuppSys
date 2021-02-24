@@ -227,6 +227,7 @@ class Mngr_model extends Model {
           $item['assigned'] = TRUE;
       }
       array_push($gearsets, $item);
+      $item['gearset'] = $this->get_gearset_det($item['id']);
     }
     $db->close();
     //https://www.php.net/manual/en/function.array-multisort.php
@@ -234,4 +235,43 @@ class Mngr_model extends Model {
     $retarr['gearsets'] = $gearsets;
     return $retarr;
   }
+
+  public function get_gearset_det($id) {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('members');
+    $builder->where('gear', $id);
+    $gearset = array();
+    if($builder->countAllResults() > 0) {
+      $row = $builder->get()->getRow();
+      $item = array();
+      $item['id'] = $id;
+      $builder->resetQuery();
+      $builder = $db->table('gear_sets');
+      $builder->where('id_gear_sets', $item['id']);
+      $row = $builder->get()->getRow();
+      $item['id_parent'] = $row->id_parent;
+      $item['id_member'] = $row->id_member;
+      $item['desc'] = $this->encr_decr($row->description, FALSE, TRUE);
+      $gear_arr = explode(':', $row->gear_set);
+      $items_arr = array();
+      foreach($gear_arr as $elem) {
+        $builder->resetQuery();
+        $builder = $db->table('gear');
+        $builder->where('id_gear', $elem);
+        $row = $builder->get()->getRow();
+        $items_arr['id_gear'] = $elem;
+        $items_arr['desc'] = $this->encr_decr($row->description, FALSE, TRUE);
+        $items_arr['loc'] = $row->location;
+        $items_arr['qty'] = $row->qty;
+      }
+      $item['gearset'] = $items_arr;
+      array_push($gearset, $item);
+    }
+    else {
+      $gearset = NULL;
+    }
+    $db->close();
+    return $gearset;
+  }
+
 }
