@@ -12,7 +12,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
 
 /**
  * --------------------------------------------------------------------
- * Router Setup
+ * Router Setup - test
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
